@@ -1,5 +1,6 @@
 package aoc2023;
 
+import com.google.common.collect.Lists;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -22,8 +23,8 @@ public class Day05 {
 
   @SneakyThrows
   public static List<String> readFile() {
-    //return Files.readAllLines(Path.of(Day03.class.getResource("day05_1.txt").toURI()));
-    return Utils.getInputData(2023,5);
+    return Files.readAllLines(Path.of(Day03.class.getResource("day05_1.txt").toURI()));
+    //return Utils.getInputData(2023,5);
   }
 
   public static List<Integer> readFileAsInts() {
@@ -56,7 +57,7 @@ public class Day05 {
         map.put(collect1.get(1), new Range(collect1.get(0), collect1.get(2)));
       }
     }
-    maps.add(x++, map);
+    maps.add(map);
 
     TreeSet<Long> locations = new TreeSet<>();
     for (Long seed : seeds) {
@@ -90,7 +91,6 @@ public class Day05 {
     List<TreeMap<Long, Range>> maps = new ArrayList<>(6);
 
     int x = 0;
-
 
     TreeMap<Long, Range> map = new TreeMap<>();
     for(int i=3;i<lines.size();i++) {
