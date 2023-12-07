@@ -19,7 +19,6 @@ public class Day06 {
 
   @SneakyThrows
   public static List<String> readFile() {
-    //return Files.readAllLines(Path.of(Day03.class.getResource("day06_1.txt").toURI()));
     return Utils.getInputData(2023,6);
   }
 
@@ -37,24 +36,9 @@ public class Day06 {
     List<Long> distances =
         Arrays.stream(lines.get(1).split(":")[1].trim().split("\s+")).map(v -> Long.valueOf(v)).collect(Collectors.toList());
 
-    long answer = 1;
-
-    for(int i=0;i<times.size();i++) {
-      long wins = 0;
-      for(int j=1;j<times.get(i);j++) {
-        if((times.get(i) - j) * j > distances.get(i)) {
-          wins++;
-        }
-      }
-      answer *= wins != 0 ? wins : 1;
-    }
-    log.info("{} {}", times, distances);
-
-    log.info("Answer 1 - {}", answer);
+    log.info("Answer 1 - {}", getWins(times, distances));
 
   }
-
-  public record Range (long destination , long range) {}
 
   @Test
   public void testPuzzle2() throws Exception {
@@ -65,21 +49,23 @@ public class Day06 {
 
     List<Long> distances =
         List.of(Long.valueOf(lines.get(1).split(":")[1].trim().replaceAll("\s+ ", "")));
-    long answer = 1;
 
-    for(int i=0;i<times.size();i++) {
+    log.info("Answer 1 - {}", getWins(times, distances));
+
+  }
+
+  private static long getWins(List<Long> times, List<Long> distances) {
+    long answer = 1;
+    for(int i = 0; i < times.size(); i++) {
       long wins = 0;
-      for(int j=1;j<times.get(i);j++) {
+      for(int j = 1; j< times.get(i); j++) {
         if((times.get(i) - j) * j > distances.get(i)) {
           wins++;
         }
       }
       answer *= wins != 0 ? wins : 1;
     }
-    log.info("{} {}", times, distances);
-
-    log.info("Answer 1 - {}", answer);
-
+    return answer;
   }
 
 }
