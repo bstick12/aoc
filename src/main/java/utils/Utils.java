@@ -107,5 +107,39 @@ public class Utils {
   }
 
 
+  public static long gcd(long a, long b)
+  {
+    while (b > 0)
+    {
+      long temp = b;
+      b = a % b; // % is remainder
+      a = temp;
+    }
+    return a;
+  }
+
+  public static long gcd(List<Long> input)
+  {
+    long result = input.get(0);
+    for(int i = 1; i < input.size(); i++) {
+      result = gcd(result, input.get(i));
+    }
+    return result;
+  }
+
+  public static long lcm(long a, long b)
+  {
+    return a * (b / gcd(a, b));
+  }
+
+  public static long lcm(List<Long> input)
+  {
+    long result = input.get(0);
+    for(int i = 1; i < input.size(); i++) {
+      result = lcm(result, input.get(i));
+    }
+    return result;
+  }
+
 
 }
