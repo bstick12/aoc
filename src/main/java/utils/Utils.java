@@ -98,6 +98,13 @@ public class Utils {
     }
   }
 
+  public static <T> void setSafeXY(int x, int y, T[][] grid, T value) {
+    try {
+      grid[x][y] = value;
+    } catch (Exception e) {
+    }
+  }
+
   public static <T> void initGrid(T[][] grid, T value) {
     for(int i=0;i<grid.length;i++) {
       for(int j=0;j<grid[0].length;j++) {
