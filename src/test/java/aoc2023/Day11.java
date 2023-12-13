@@ -1,5 +1,7 @@
 package aoc2023;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeSet;
@@ -44,8 +46,6 @@ public class Day11 {
       }
     }
 
-
-
     List<Point> spacedGalaxies =
         galaxies.stream().map(p -> p.add(new Point(emptyCols.headSet(p.x).size(), emptyRows.headSet(p.y).size()))).collect(
             Collectors.toList());
@@ -55,7 +55,6 @@ public class Day11 {
       for(int j=i+1;j<spacedGalaxies.size();j++) {
           Point destination = spacedGalaxies.get(j);
           int distance = Math.abs(start.x - destination.x) + Math.abs(start.y - destination.y);
-//          log.info("{} ->  {} {} {} {}", i+1, j+1, start, destination, distance);
           answer += distance;
       }
     }
@@ -100,7 +99,6 @@ public class Day11 {
       for(int j=i+1;j<spacedGalaxies.size();j++) {
         Point destination = spacedGalaxies.get(j);
         int distance = Math.abs(start.x - destination.x) + Math.abs(start.y - destination.y);
-        //log.info("{} ->  {} {} {} {}", i+1, j+1, start, destination, distance);
         answer += distance;
       }
     }
@@ -110,12 +108,6 @@ public class Day11 {
   }
 
   public record Point(int x, int y) {
-
-    public static final Point NORTH = new Point(0,-1);
-    public static final Point SOUTH = new Point(0,1);
-    public static final Point EAST = new Point(1,0);
-    public static final Point WEST = new Point(-1,0);
-
     Point add(Point point) {
       return new Point(point.x + x, point.y + y);
     }
