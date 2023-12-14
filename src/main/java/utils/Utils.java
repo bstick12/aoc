@@ -33,6 +33,18 @@ public class Utils {
 
   }
 
+  public static Character[][] getGrid(List<String> lines) {
+    Character[][] grid = new Character[lines.get(0).length()][lines.size()];
+
+    for (int y = 0; y < lines.size(); y++) {
+      String line = lines.get(y);
+      for (int x = 0; x < line.toCharArray().length; x++) {
+        grid[x][y] = line.toCharArray()[x];
+      }
+    }
+    return grid;
+  }
+
   public static <T> T getSafe(int x, int y, T[][] grid, T defaultValue) {
     try {
       return grid[y][x];
@@ -44,6 +56,14 @@ public class Utils {
   public static <T> T getSafeXY(int x, int y, T[][] grid, T defaultValue) {
     try {
       return grid[x][y];
+    } catch (Exception e) {
+      return defaultValue;
+    }
+  }
+
+  public static <T> T getSafeXY(Point p, T[][] grid, T defaultValue) {
+    try {
+      return grid[p.x()][p.y()];
     } catch (Exception e) {
       return defaultValue;
     }
@@ -101,6 +121,13 @@ public class Utils {
   public static <T> void setSafeXY(int x, int y, T[][] grid, T value) {
     try {
       grid[x][y] = value;
+    } catch (Exception e) {
+    }
+  }
+
+  public static <T> void setSafeXY(Point p, T[][] grid, T value) {
+    try {
+      grid[p.x()][p.y()] = value;
     } catch (Exception e) {
     }
   }
