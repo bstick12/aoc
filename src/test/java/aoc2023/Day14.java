@@ -2,6 +2,8 @@ package aoc2023;
 
 import static utils.Utils.getGrid;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.Currency;
 import java.util.HashMap;
@@ -19,7 +21,9 @@ public class Day14 {
 
   @SneakyThrows
   public static List<String> readFile() {
-    return Utils.getInputData(2023, 14);
+    //return Utils.getInputData(2023, 14);
+    return Files.readAllLines(Path.of(Day07.class.getResource("day14_1.txt").toURI()));
+
   }
 
   public static List<Integer> readFileAsInts() {
