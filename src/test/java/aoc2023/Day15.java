@@ -57,9 +57,7 @@ public class Day15 {
     return command;
   }
 
-  public record Lens(String label, int focal) {
-
-  }
+  public record Lens(String label, int focal) { }
 
   @Test
   public void testPuzzle2() throws Exception {
